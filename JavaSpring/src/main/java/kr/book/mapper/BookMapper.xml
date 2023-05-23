@@ -32,10 +32,10 @@
   </select>
   
   <select id="rentMoney" resultType="kr.book.entity.Money">
-    select mo.cust_no, me.cust_name, me.grade, sum(rent_price) as price 
-	from member_tbl me, rent_tbl mo 
-	where me.cust_no=mo.cust_no 
-	group by mo.cust_no,me.cust_name, me.grade 
+    select re.cust_no, me.cust_name, me.grade, sum(rent_price) as price 
+	from member_tbl me, rent_tbl re 
+	where me.cust_no=re.cust_no 
+	group by re.cust_no,me.cust_name, me.grade 
 	order by price desc 
   </select>
 </mapper>

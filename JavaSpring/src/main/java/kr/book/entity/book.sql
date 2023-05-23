@@ -60,5 +60,3 @@ insert into rent_tbl(cust_no, rent_no, book_code, rent_price)
 values(100004,20230010,'A010',2300);
 
 select * from rent_tbl;
-
-

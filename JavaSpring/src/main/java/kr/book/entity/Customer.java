@@ -3,7 +3,7 @@ package kr.book.entity;
 import java.util.Date;
 
 import lombok.Data;
-
+// 고객정보 Entity
 @Data
 public class Customer {
    private int cust_no;
