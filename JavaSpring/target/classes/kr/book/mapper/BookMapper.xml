@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.book.mapper.BookMapper">
+
+  <select id="list" resultType="kr.book.entity.Customer">
+     select * from member_tbl
+  </select>
+  
+  <select id="getCustNo" resultType="int">
+     select max(cust_no)+1 from member_tbl
+  </select>
+  
+  <insert id="register" parameterType="kr.book.entity.Customer">
+     insert into member_tbl(cust_no, cust_name, phone, cust_email, grade)
+     values(#{cust_no},#{cust_name},#{phone},#{cust_email},#{grade})
+  </insert>
+  
+  <select id="get" resultType="kr.book.entity.Customer">
+    select * from member_tbl where cust_no=#{cust_no}
+  </select>
+  
+  <update id="modify" parameterType="kr.book.entity.Customer">
+    update member_tbl 
+    set cust_name=#{cust_name},
+    phone=#{phone},
+    cust_email=#{cust_email},
+    grade=#{grade} where cust_no=#{cust_no}
+  </update>
+  
+  <select id="rentList" resultType="kr.book.entity.Rent">
+     select * from rent_tbl
+  </select>
+  
+  <select id="rentMoney" resultType="kr.book.entity.Money">
+    select mo.cust_no, me.cust_name, me.grade, sum(rent_price) as price 
+	from member_tbl me, rent_tbl mo 
+	where me.cust_no=mo.cust_no 
+	group by mo.cust_no,me.cust_name, me.grade 
+	order by price desc 
+  </select>
+</mapper>
+
+
+
+
+
+
+
